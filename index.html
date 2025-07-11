@@ -9,23 +9,46 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
-    <!-- Chosen Palette: Estrategia Serena (Fondo: #F8F7F4, Texto Principal: #1a202c, Acento Primario: #0D9488 (Teal), Acento Secundario: #4A5568) -->
+    <!-- Chosen Palette: Innovatur Oscura Rediseñada (Fondo Principal: #000000, Fondo Secundario: #1A1A1A (gris 90%), Acento Primario: #FF8C00 (Naranja del logo), Acento Secundario: #6B7280 (Gris del logo), Texto Principal: #F8F7F4) -->
     <!-- Application Structure Plan: Se diseñó una SPA (Single-Page Application) con un flujo narrativo. Comienza con una propuesta de valor clara (Hero). Luego, la sección 'Nuestra Filosofía' utiliza un diagrama interactivo para explicar visualmente cómo los servicios se conectan a un núcleo común, abordando la necesidad de un discurso unificador. La sección 'Servicios' presenta cada área como un vehículo claro y distinto dentro de esa filosofía. Finalmente, una sección de 'Metodología' con un gráfico de Chart.js y una de 'Contacto' completan la experiencia. Esta estructura guía al usuario desde el 'porqué' (filosofía) hasta el 'qué' (servicios) y el 'cómo' (metodología), creando una historia coherente que refuerza el enfoque estratégico y evita la percepción de dispersión. -->
     <!-- Visualization & Content Choices: 1. Diagrama de Filosofía (Goal: Organizar/Relacionar): Se usó HTML/CSS con Tailwind para crear un diagrama de hub y radios. Interacción: Hover sobre cada servicio revela su conexión con el núcleo. Justificación: Comunica visualmente la estrategia unificada, un punto central del informe. 2. Gráfico de Proceso (Goal: Change/Organize): Se utilizó Chart.js (Canvas) para mostrar un gráfico de barras horizontales de las fases de un proyecto. Interacción: Tooltips de Chart.js. Justificación: Hace tangible la metodología de 'plan de vuelo' mencionada en el informe, aportando credibilidad. 3. Tarjetas de Servicio (Goal: Informar): Se usó un layout de grid de HTML/Tailwind para las tarjetas. Interacción: Sutil efecto de hover. Justificación: Presenta la información de forma clara, ordenada y escaneable. -->
     <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        innovaturBlack: '#000000', // Fondo principal
+                        innovaturDarkGrey: '#1A1A1A', // Fondo secundario (gris 90%)
+                        innovaturOrange: {
+                            DEFAULT: '#FF8C00', // Naranja principal del logo
+                            dark: '#E67A00', // Un tono más oscuro para hover
+                            light: '#FFDAB9', // Un tono más claro para fondos sutiles
+                        },
+                        innovaturLightGrey: {
+                            DEFAULT: '#6B7280', // Gris del logo para elementos secundarios y algunos textos
+                            light: '#A0AEC0', // Un gris más claro para elementos sutiles
+                            dark: '#4A5568', // Un gris más oscuro (usado en el patrón de fondo)
+                        },
+                        innovaturWhiteText: '#F8F7F4', // Color de texto principal para fondos oscuros
+                    }
+                }
+            }
+        }
+    </script>
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #F8F7F4;
-            color: #1a2c4a;
+            background-color: var(--tw-colors-innovaturBlack);
+            color: var(--tw-colors-innovaturWhiteText);
         }
         .hero-pattern {
-            background-image: radial-gradient(#4A5568 1px, transparent 1px);
+            background-image: radial-gradient(var(--tw-colors-innovaturLightGrey-dark) 1px, transparent 1px);
             background-size: 20px 20px;
             opacity: 0.1;
         }
         .nav-link.active {
-            color: #0D9488;
+            color: var(--tw-colors-innovaturOrange-DEFAULT);
             font-weight: 700;
         }
         .chart-container {
@@ -46,59 +69,61 @@
 </head>
 <body class="antialiased">
 
-    <header id="header" class="bg-F8F7F4/80 backdrop-blur-lg fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+    <header id="header" class="bg-innovaturBlack/80 backdrop-blur-lg fixed top-0 left-0 right-0 z-50 transition-all duration-300">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-20">
                 <div class="flex-shrink-0">
-                    <a href="#hero" class="text-2xl font-extrabold tracking-tight text-gray-800">INNOVATUR</a>
+                    <a href="#hero" class="block h-10">
+                        <img src="img/Logo innovatur.jpg" alt="Logo Innovatur" class="h-full w-auto object-contain">
+                    </a>
                 </div>
                 <nav class="hidden md:flex md:space-x-8">
-                    <a href="#filosofia" class="nav-link text-gray-600 hover:text-teal-600 font-medium transition-colors">Nuestra Filosofía</a>
-                    <a href="#servicios" class="nav-link text-gray-600 hover:text-teal-600 font-medium transition-colors">Servicios</a>
-                    <a href="#metodologia" class="nav-link text-gray-600 hover:text-teal-600 font-medium transition-colors">Metodología</a>
-                    <a href="#contacto" class="nav-link text-gray-600 hover:text-teal-600 font-medium transition-colors">Contacto</a>
+                    <a href="#filosofia" class="nav-link text-innovaturWhiteText hover:text-innovaturOrange-DEFAULT font-medium transition-colors">Nuestra Filosofía</a>
+                    <a href="#servicios" class="nav-link text-innovaturWhiteText hover:text-innovaturOrange-DEFAULT font-medium transition-colors">Servicios</a>
+                    <a href="#metodologia" class="nav-link text-innovaturWhiteText hover:text-innovaturOrange-DEFAULT font-medium transition-colors">Metodología</a>
+                    <a href="#contacto" class="nav-link text-innovaturWhiteText hover:text-innovaturOrange-DEFAULT font-medium transition-colors">Contacto</a>
                 </nav>
                 <div class="md:hidden">
-                    <button id="mobile-menu-button" class="text-gray-700 hover:text-teal-600 focus:outline-none">
+                    <button id="mobile-menu-button" class="text-innovaturWhiteText hover:text-innovaturOrange-DEFAULT focus:outline-none">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
                     </button>
                 </div>
             </div>
         </div>
         <div id="mobile-menu" class="hidden md:hidden">
-            <a href="#filosofia" class="block py-2 px-4 text-sm text-gray-600 hover:bg-teal-50">Nuestra Filosofía</a>
-            <a href="#servicios" class="block py-2 px-4 text-sm text-gray-600 hover:bg-teal-50">Servicios</a>
-            <a href="#metodologia" class="block py-2 px-4 text-sm text-gray-600 hover:bg-teal-50">Metodología</a>
-            <a href="#contacto" class="block py-2 px-4 text-sm text-gray-600 hover:bg-teal-50">Contacto</a>
+            <a href="#filosofia" class="block py-2 px-4 text-sm text-innovaturWhiteText hover:bg-innovaturOrange-dark">Nuestra Filosofía</a>
+            <a href="#servicios" class="block py-2 px-4 text-sm text-innovaturWhiteText hover:bg-innovaturOrange-dark">Servicios</a>
+            <a href="#metodologia" class="block py-2 px-4 text-sm text-innovaturWhiteText hover:bg-innovaturOrange-dark">Metodología</a>
+            <a href="#contacto" class="block py-2 px-4 text-sm text-innovaturWhiteText hover:bg-innovaturOrange-dark">Contacto</a>
         </div>
     </header>
 
     <main>
-        <section id="hero" class="relative pt-32 pb-20 md:pt-48 md:pb-32">
+        <section id="hero" class="relative pt-32 pb-20 md:pt-48 md:pb-32 bg-innovaturBlack">
             <div class="absolute inset-0 hero-pattern"></div>
             <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center relative">
-                <h1 class="text-4xl md:text-6xl font-extrabold tracking-tighter text-gray-900 mb-6 leading-tight">
-                    Desbloqueando Potencial, <span class="text-teal-700">Estructurando Crecimiento.</span>
+                <h1 class="text-4xl md:text-6xl font-extrabold tracking-tighter text-innovaturOrange-DEFAULT mb-6 leading-tight">
+                    Desbloqueando Potencial, <span class="text-innovaturOrange-DEFAULT">Estructurando Crecimiento.</span>
                 </h1>
-                <p class="max-w-3xl mx-auto text-lg md:text-xl text-gray-600 mb-10">
+                <p class="max-w-3xl mx-auto text-lg md:text-xl text-innovaturWhiteText mb-10">
                     Somos su socio estratégico en la habilitación de la innovación y el emprendimiento. Catalizamos la transformación de individuos y organizaciones para convertir desafíos en valor sostenible.
                 </p>
                 <div class="flex justify-center space-x-4">
-                    <a href="#servicios" class="bg-teal-600 text-white font-bold py-3 px-8 rounded-full hover:bg-teal-700 transition-transform transform hover:scale-105 shadow-lg">
+                    <a href="#servicios" class="bg-innovaturOrange-DEFAULT text-white font-bold py-3 px-8 rounded-full hover:bg-innovaturOrange-dark transition-transform transform hover:scale-105 shadow-lg">
                         Explorar Servicios
                     </a>
-                    <a href="#contacto" class="bg-white text-teal-600 font-bold py-3 px-8 rounded-full hover:bg-gray-100 transition-colors border border-gray-200 shadow-lg">
+                    <a href="#contacto" class="bg-innovaturDarkGrey text-innovaturLightGrey-DEFAULT font-bold py-3 px-8 rounded-full hover:bg-innovaturLightGrey-dark transition-colors border border-innovaturLightGrey-DEFAULT shadow-lg">
                         Contáctenos
                     </a>
                 </div>
             </div>
         </section>
 
-        <section id="filosofia" class="py-20 md:py-32 bg-white">
+        <section id="filosofia" class="py-20 md:py-32 bg-innovaturDarkGrey">
             <div class="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center mb-16">
-                    <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 tracking-tight">Nuestra Filosofía: Habilitación Estructurada</h2>
-                    <p class="mt-4 max-w-2xl mx-auto text-lg text-gray-600">
+                    <h2 class="text-3xl md:text-4xl font-extrabold text-innovaturOrange-DEFAULT tracking-tight">Nuestra Filosofía: Habilitación Estructurada</h2>
+                    <p class="mt-4 max-w-2xl mx-auto text-lg text-innovaturWhiteText">
                         Nuestra propuesta de valor no es solo "hacer innovación". Es habilitarla, estructurarla, institucionalizarla y articularla. Todos nuestros servicios emanan de este núcleo, funcionando como vehículos interconectados para un propósito común.
                     </p>
                 </div>
@@ -106,31 +131,31 @@
                 <div class="flex flex-col items-center justify-center space-y-8 md:space-y-0 md:flex-row md:space-x-8">
                     <div class="w-full md:w-1/3 grid grid-cols-1 gap-8 text-right">
                         <div class="service-node-left group" data-service="mentoria">
-                            <h3 class="text-xl font-bold text-gray-800">Mentorías Estratégicas</h3>
-                            <p class="text-gray-500 text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300">Desarrollo de la mentalidad y visión en líderes para catalizar la innovación desde adentro.</p>
+                            <h3 class="text-xl font-bold text-innovaturOrange-DEFAULT">Mentorías Estratégicas</h3>
+                            <p class="text-innovaturWhiteText text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300">Desarrollo de la mentalidad y visión en líderes para catalizar la innovación desde adentro.</p>
                         </div>
                         <div class="service-node-left group" data-service="proyectos">
-                            <h3 class="text-xl font-bold text-gray-800">Formulación de Proyectos</h3>
-                            <p class="text-gray-500 text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300">Aplicación de la metodología para transformar ideas en planes de acción ejecutables y de valor.</p>
+                            <h3 class="text-xl font-bold text-innovaturOrange-DEFAULT">Formulación de Proyectos</h3>
+                            <p class="text-innovaturWhiteText text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300">Aplicación de la metodología para transformar ideas en planes de acción ejecutables y de valor.</p>
                         </div>
                     </div>
                     
                     <div class="relative w-48 h-48 md:w-64 md:h-64 flex items-center justify-center">
-                        <div class="absolute w-full h-full bg-teal-500 rounded-full opacity-10 animate-pulse"></div>
-                        <div class="absolute w-2/3 h-2/3 bg-teal-500 rounded-full opacity-20"></div>
-                        <div id="core-philosophy" class="relative w-40 h-40 md:w-48 md:h-48 bg-teal-600 rounded-full flex items-center justify-center text-center p-4 shadow-2xl">
+                        <div class="absolute w-full h-full bg-innovaturOrange-DEFAULT rounded-full opacity-10 animate-pulse"></div>
+                        <div class="absolute w-2/3 h-2/3 bg-innovaturOrange-DEFAULT rounded-full opacity-20"></div>
+                        <div id="core-philosophy" class="relative w-40 h-40 md:w-48 md:h-48 bg-innovaturOrange-DEFAULT rounded-full flex items-center justify-center text-center p-4 shadow-2xl">
                             <span class="text-white font-bold text-lg leading-tight">Habilitación de la Innovación</span>
                         </div>
                     </div>
 
                     <div class="w-full md:w-1/3 grid grid-cols-1 gap-8 text-left">
                        <div class="service-node-right group" data-service="educacion">
-                            <h3 class="text-xl font-bold text-gray-800">Innovación en Educación TP</h3>
-                            <p class="text-gray-500 text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300">Institucionalización de capacidades para crear ecosistemas de innovación sostenibles.</p>
+                            <h3 class="text-xl font-bold text-innovaturOrange-DEFAULT">Innovación en Educación TP</h3>
+                            <p class="text-innovaturWhiteText text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300">Institucionalización de capacidades para crear ecosistemas de innovación sostenibles.</p>
                         </div>
                         <div class="service-node-right group" data-service="contenidos">
-                            <h3 class="text-xl font-bold text-gray-800">Articulación de Contenidos</h3>
-                            <p class="text-gray-500 text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300">Comunicación del valor para conectar innovaciones con el mercado y la sociedad.</p>
+                            <h3 class="text-xl font-bold text-innovaturOrange-DEFAULT">Articulación de Contenidos</h3>
+                            <p class="text-innovaturWhiteText text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300">Comunicación del valor para conectar innovaciones con el mercado y la sociedad.</p>
                         </div>
                     </div>
                 </div>
@@ -138,11 +163,11 @@
             </div>
         </section>
 
-        <section id="servicios" class="py-20 md:py-32">
+        <section id="servicios" class="py-20 md:py-32 bg-innovaturBlack">
             <div class="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center mb-16">
-                    <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 tracking-tight">Vehículos para la Transformación</h2>
-                    <p class="mt-4 max-w-2xl mx-auto text-lg text-gray-600">
+                    <h2 class="text-3xl md:text-4xl font-extrabold text-innovaturOrange-DEFAULT tracking-tight">Vehículos para la Transformación</h2>
+                    <p class="mt-4 max-w-2xl mx-auto text-lg text-innovaturWhiteText">
                         Cada servicio es un camino especializado para implementar nuestra filosofía y generar un impacto medible, adaptado a las necesidades de individuos, proyectos e instituciones.
                     </p>
                 </div>
@@ -151,11 +176,11 @@
             </div>
         </section>
 
-        <section id="metodologia" class="py-20 md:py-32 bg-white">
+        <section id="metodologia" class="py-20 md:py-32 bg-innovaturDarkGrey">
             <div class="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center mb-16">
-                    <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 tracking-tight">Nuestra Metodología: El Plan de Vuelo</h2>
-                    <p class="mt-4 max-w-2xl mx-auto text-lg text-gray-600">
+                    <h2 class="text-3xl md:text-4xl font-extrabold text-innovaturOrange-DEFAULT tracking-tight">Nuestra Metodología: El Plan de Vuelo</h2>
+                    <p class="mt-4 max-w-2xl mx-auto text-lg text-innovaturWhiteText">
                         Creemos en un enfoque estructurado que minimiza riesgos y maximiza el valor. Nuestro "plan de vuelo" guía cada proyecto desde la concepción hasta la implementación exitosa.
                     </p>
                 </div>
@@ -165,15 +190,15 @@
             </div>
         </section>
 
-        <section id="contacto" class="py-20 md:py-32 bg-gray-800 text-white">
+        <section id="contacto" class="py-20 md:py-32 bg-innovaturBlack text-innovaturWhiteText">
             <div class="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="max-w-3xl mx-auto text-center">
-                    <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight">Iniciemos una Conversación</h2>
-                    <p class="mt-4 text-lg text-gray-300">
+                    <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight text-innovaturOrange-DEFAULT">Iniciemos una Conversación</h2>
+                    <p class="mt-4 text-lg text-innovaturWhiteText">
                         ¿Listo para transformar una idea en un proyecto de alto impacto o potenciar su liderazgo? Contáctenos para explorar cómo podemos colaborar.
                     </p>
                     <div class="mt-10">
-                        <a href="mailto:contacto@innovatur.cl" class="bg-teal-600 text-white font-bold py-4 px-10 rounded-full hover:bg-teal-500 transition-transform transform hover:scale-105 shadow-lg text-lg">
+                        <a href="mailto:contacto@innovatur.cl" class="bg-innovaturOrange-DEFAULT text-white font-bold py-4 px-10 rounded-full hover:bg-innovaturOrange-dark transition-transform transform hover:scale-105 shadow-lg text-lg">
                             Enviar un Email a contacto@innovatur.cl
                         </a>
                     </div>
@@ -183,8 +208,8 @@
 
     </main>
 
-    <footer class="bg-gray-900">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-8 text-center text-gray-400">
+    <footer class="bg-innovaturBlack">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-8 text-center text-innovaturWhiteText">
             <p>&copy; 2025 Innovatur. Todos los derechos reservados.</p>
             <p class="text-sm mt-2">Diseñado como un hub estratégico para la innovación y el emprendimiento.</p>
         </div>
@@ -232,13 +257,13 @@
             servicesData.forEach(service => {
                 const card = document.createElement('div');
                 card.id = `service-card-${service.id}`;
-                card.className = 'bg-white p-8 rounded-xl shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 border border-gray-100 flex flex-col';
+                card.className = 'bg-innovaturDarkGrey p-8 rounded-xl shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 border border-innovaturLightGrey-DEFAULT flex flex-col';
                 card.innerHTML = `
-                    <div class="text-4xl text-teal-600 mb-4">${service.icon}</div>
-                    <h3 class="text-xl font-bold text-gray-800 mb-2">${service.title}</h3>
-                    <p class="text-gray-500 mb-4 flex-grow">${service.description}</p>
-                    <div class="mt-auto pt-4 border-t border-gray-200">
-                        <span class="text-xs font-bold uppercase text-teal-700 bg-teal-50 py-1 px-3 rounded-full">${service.target}</span>
+                    <div class="text-4xl text-innovaturOrange-DEFAULT mb-4">${service.icon}</div>
+                    <h3 class="text-xl font-bold text-innovaturOrange-DEFAULT mb-2">${service.title}</h3>
+                    <p class="text-innovaturWhiteText mb-4 flex-grow">${service.description}</p>
+                    <div class="mt-auto pt-4 border-t border-innovaturLightGrey-DEFAULT">
+                        <span class="text-xs font-bold uppercase text-innovaturBlack bg-innovaturOrange-light py-1 px-3 rounded-full">${service.target}</span>
                     </div>
                 `;
                 servicesGrid.appendChild(card);
@@ -250,11 +275,11 @@
                 const card = document.getElementById(`service-card-${serviceId}`);
                 
                 node.addEventListener('mouseenter', () => {
-                    card.classList.add('bg-teal-50', 'scale-105');
+                    card.classList.add('bg-innovaturOrange-dark', 'scale-105'); 
                 });
                 
                 node.addEventListener('mouseleave', () => {
-                    card.classList.remove('bg-teal-50', 'scale-105');
+                    card.classList.remove('bg-innovaturOrange-dark', 'scale-105');
                 });
             });
             
@@ -267,18 +292,18 @@
                         label: 'Énfasis en el Proceso',
                         data: [80, 85, 95, 90, 100],
                         backgroundColor: [
-                            'rgba(13, 148, 136, 0.2)',
-                            'rgba(13, 148, 136, 0.4)',
-                            'rgba(13, 148, 136, 0.6)',
-                            'rgba(13, 148, 136, 0.8)',
-                            'rgba(13, 148, 136, 1)',
+                            'rgba(255, 140, 0, 0.4)', 
+                            'rgba(255, 140, 0, 0.6)',
+                            'rgba(255, 140, 0, 0.8)',
+                            'rgba(255, 140, 0, 1)',
+                            'rgba(255, 140, 0, 1)',
                         ],
                         borderColor: [
-                             'rgba(15, 118, 110, 1)',
-                             'rgba(15, 118, 110, 1)',
-                             'rgba(15, 118, 110, 1)',
-                             'rgba(15, 118, 110, 1)',
-                             'rgba(15, 118, 110, 1)',
+                             'rgb(230, 122, 0)', 
+                             'rgb(230, 122, 0)',
+                             'rgb(230, 122, 0)',
+                             'rgb(230, 122, 0)',
+                             'rgb(230, 122, 0)',
                         ],
                         borderWidth: 1
                     }]
@@ -292,9 +317,9 @@
                             display: false
                         },
                         tooltip: {
-                            backgroundColor: '#1a202c',
-                            titleFont: { weight: 'bold' },
-                            bodyFont: { size: 14 },
+                            backgroundColor: 'var(--tw-colors-innovaturDarkGrey)', 
+                            titleFont: { weight: 'bold', color: 'var(--tw-colors-innovaturOrange-DEFAULT)' },
+                            bodyFont: { size: 14, color: 'var(--tw-colors-innovaturWhiteText)' },
                             callbacks: {
                                 label: function(context) {
                                     return 'Fase clave para asegurar el éxito del proyecto.';
@@ -313,7 +338,7 @@
                                     size: 14,
                                     weight: '500'
                                 },
-                                color: '#4A5568'
+                                color: 'var(--tw-colors-innovaturWhiteText)' 
                             }
                         }
                     }
